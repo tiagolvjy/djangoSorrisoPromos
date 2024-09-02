@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Promoção - SorrisoPromos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="{% url 'home' %}">SorrisoPromos</a>
+            <div class="d-flex flex-grow-1 justify-content-center">
+                <a href="{% url 'home' %}">
+                    <img src="https://community.akamai.steamstatic.com/economy/image/IzMF03bi9WpSBq-S-ekoE33L-iLqGFHVaU25ZzQNQcXdB2ozio1RrlIWFK3UfvMYB8UsvjiMXojflsZalyxSh31CIyHz2GZ-KuFpPsrTzBG0qe6yD3n-ZDLdYSXcTVg9ROEKZ2HYqGHzsevASzHPSb0tEV8Cf6YN9W0fbJjbPEFo3Y8Vu2u_0UdyEhk6f9BKZAarxm1ONekmkXQQYJqelPQ/330x192" alt="Logo" class="img-fluid" style="max-height: 40px;">
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'promotions_list' %}">Promoções</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://telegram.org">Telegram</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/wagnerpalmeira/">Parceiros</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+                    <img src="{{ promotion.image }}" alt="{{ promotion.title }}" class="img-fluid rounded">
+                </div>
+                
+                <div class="col-md-6">
+                    <h1 class="display-4">{{ promotion.title }}</h1>
+                    <p class="lead">Preço: {{ promotion.price }} R$</p>
+                    <p>{{ promotion.description }}</p>
+                    <a href="{{ promotion.url }}" class="btn btn-primary btn-lg" target="_blank">Acessar Promoção</a>
+                </div>
+            </div>
+            
+            <div class="my-4">
+                <h3>Avaliações</h3>
+                <div class="d-flex flex-column">
+                    {% if promotion.reviews %}
+                        {% for review in promotion.reviews %}
+                            <div class="border rounded p-3 mb-3">
+                                <h5>{{ review.author }}</h5>
+                                <p>{{ review.comment }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Nenhuma avaliação ainda.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-light text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">© 2024 SorrisoPromos. Todos os direitos reservados.</p>
+            <p>
+                <a href="#" class="text-light">Privacidade</a> |
+                <a href="#" class="text-light">Termos de Serviço</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

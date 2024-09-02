@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for promotion in promotions %}
+        <div class="col-12 col-md-6 col-lg-4 mt-2">
+            <div class="card">
+                <img src="{{ promotion.image }}" class="card-img-top" alt="{{ promotion.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ promotion.title }}</h5>
+                    <p class="card-text">
+                        <h1>
+                            {{ promotion.price }} R$
+                        </h1>
+                    </p>
+                    <a href="{{ promotion.url }}" class="btn btn-primary" target="_blank">Acessar Promoção</a>
+                    <a href="{% url 'promotion_detail' pk=forloop.counter0 %}" class="btn btn-secondary">Detalhes</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
